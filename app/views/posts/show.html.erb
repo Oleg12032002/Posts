@@ -1,0 +1,51 @@
+<h1><%= @post.title %></h1>
+
+<%= image_tag @post.photo, width:800%>
+
+<p>
+	<h3><%= @post.body %></h3>
+	<hr>
+	<span class="p-2 text-dark"><%= link_to "Edit", edit_post_path(@post), :class => 'btn btn-outline-primary'%></span>
+	<span class="p-2 text-dark"><%= link_to "Destroy", post_path(@post), method: :delete, data: {confirm:"Delete Post?"}, :class => 'btn btn-outline-danger'%></span>
+</p>
+
+
+
+<h3>Comments</h3>
+
+<%= form_for([@post,@post.comments.build]) do |form| %>
+  <p>
+    User<br>
+    <%= form.text_field(:username, {:class =>'form-control'}) %>
+  </p>
+
+  <p>
+    Text comment<br>
+    <%= form.text_area(:body, {:class =>'form-control'}) %>
+  </p>
+  <p>
+    <%= form.submit("Add comment", {:class => 'btn btn-outline-warning'})%>
+  </p>
+<% end %>
+
+
+<hr>
+
+<div>
+
+	<% @post.comments.each do |comment| %>
+		<div class='alert alert-light' style=" 
+			margin: 20px;
+			border: 4px solid blue;
+			padding: 20px;
+			width: 100%; 
+			margin-left: 10px;
+		">
+			<p><%= comment.username %></p>
+			<p><%= comment.body %></p>
+		</div>
+	<% end %>
+</div>
+
+
+

@@ -1,0 +1,30 @@
+<h3> Edit Post </h3>
+
+<%= form_with scope: :post, url: post_path(@post), method: :patch, local: true do |form| %>
+  
+  <% if @post.errors.any? %>
+    <% @post.errors.full_messages.each do |msg|%>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
+
+
+  <p>
+    Title<br>
+    <%= form.text_field(:title, {:class =>'form-control'}) %>
+  </p>
+
+  <p>
+    Body<br>
+    <%= form.text_area(:body, {:class =>'form-control'}) %>
+  </p>
+
+  <p> 
+    Image<br>
+    <%= form.file_field(:image, {:class => 'fileupload'})%>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

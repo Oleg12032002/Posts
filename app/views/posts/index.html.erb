@@ -1,0 +1,27 @@
+<h3>All Posts</h3>
+
+
+<div style = "
+	margin: 20px;
+	display: flex; 
+	flex-direction: row; 
+	align-content: space-between;
+	flex-wrap: wrap; 
+	justify-content: center 
+">
+
+	<% @post.each do |post| %>
+		<div class='alert alert-light' style=" 
+			margin: 20px;
+			#border: 4px solid blue;
+			padding: 20px;
+			width: 40%; 
+			margin-left: 10px;
+		">
+			<p><%= post.title %></p>
+			<%= image_tag post.photo, width:300, height:200%>
+			<p><%= post.body %></p>
+			<span class="p-2 text-dark"><%= link_to "Read all", post_path(post), :class => 'btn btn-outline-primary'%></span>
+		</div>
+	<% end %>
+</div>
